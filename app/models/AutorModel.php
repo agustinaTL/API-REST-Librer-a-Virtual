@@ -1,57 +1,58 @@
 <?php
 
+require_once './app/models/model.php';
 
-require_once './config.php';
+class AutorModel extends Model {
 
-class AutorModel {
-    private $dataBase;
+    
+  function getAutor($page = 1, $orderQuery = ''){
 
-    function __construct(){
-        $this->dataBase = new PDO('mysql:host=localhost;dbname=libreria2;charset=utf8', 'root', '');
+    $query = $this->db->prepare('SELECT * FROM autores '.$orderQuery.' LIMIT 5 OFFSET '.(($page-1)*5));
+    $query->execute();
+    $autor = $query->fetchAll(PDO::FETCH_OBJ);
+
+    return $autor;
+
+  }
+
+  function addAutor($nombre, $fecha_nacimiento, $nacionalidad){
+
+      $query = $this->db->prepare('INSERT INTO autores (nombre, fecha_nacimiento, nacionalidad) VALUES ( ? , ? , ?)');
+      $query->execute([$nombre,$fecha_nacimiento,$nacionalidad]);
+      return $this->db->lastInsertId();
+    
+
+  }
+
+function editAutor($id, $nombre, $fecha_nacimiento, $nacionalidad){
+    try {
+      $query = $this->db->prepare('UPDATE autores SET nombre = ?, fecha_nacimiento = ?, nacionalidad = ? WHERE id_autor = ?');
+      $query->execute([$nombre,$fecha_nacimiento,$nacionalidad,$id]);
+      return true;
+    } catch (PDOException $e) {
+      return false;
     }
- 
-    function getAutores(){
-        $query = $this->dataBase->prepare('SELECT * FROM autores');
-        $query->execute();
+  }
 
-        $autores = $query->fetchAll(PDO::FETCH_OBJ);
-        return $autores;
-    }
+ function deleteAutor($id){
+    $query = $this->db->prepare('DELETE FROM autores WHERE id_autor = ?');
+    $query->execute([$id]);
+  }
 
-    function getAutorById($id){
-        $query = $this->dataBase->prepare('SELECT * FROM autores WHERE id_autor = ?');
-        $query->execute([$id]);
+ public function getAutorById($id){
+    $query = $this->db->prepare('SELECT * FROM autores WHERE id_autor = ?');
+    $query->execute([$id]);
+    
+    return $query->fetch(PDO::FETCH_OBJ);
+  }
 
-        $autor = $query->fetch(PDO::FETCH_OBJ);
-        return $autor;
-    }
+  function autorHasColumn($column){
+    $query = $this->db->prepare("DESCRIBE autores");
+    $query->execute();
+    $columnas = $query->fetchAll(PDO::FETCH_COLUMN);
 
-    function getTextosIdByAutorId($id){
-        $query = $this->dataBase->prepare('SELECT id_texto FROM textos WHERE id_autor = ?');
-        $query->execute([$id]);
-
-        $textosId = $query->fetch(PDO::FETCH_OBJ);
-        return $textosId;
-    }
-
-    function insertAutor($nombre, $fecha_nacimiento, $nacionalidad  ) {
-        $query = $this->dataBase->prepare('INSERT INTO autores (nombre, fecha_nacimiento, nacionalidad) VALUES(?,?,?)');
-        $query->execute([$nombre, $fecha_nacimiento, $nacionalidad  ]);
-        //spuede fallar
-        
-        return $this->dataBase->lastInsertId();
-    }
-
-    function modificarAutor($id, $nombre, $fecha_nacimiento  ){
-        $query = $this->dataBase->prepare('UPDATE autores SET nombre = ?, fecha_nacimiento = ? WHERE id_autor = ?');
-        $query->execute([$nombre, $fecha_nacimiento, $id]);
-    }
-
-
-    function borrarAutorById($id){
-        $query = $this->dataBase->prepare('DELETE FROM textos WHERE id_autor = ?');
-        $query->execute([$id]);
-        $query = $this->dataBase->prepare('DELETE FROM autores WHERE id_autor = ?');
-        $query->execute([$id]);
-    }
+    return in_array($column,$columnas);
+  }
+  
 }
+
