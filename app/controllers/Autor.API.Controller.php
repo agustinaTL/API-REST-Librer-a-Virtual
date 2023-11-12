@@ -1,18 +1,14 @@
 <?php
 require_once './app/models/AutorModel.php';
-require_once './app/views/AutorView.php';
-require_once './app/helpers/AuthHelper.php';
+require_once './app/views/API.view.php';
+require_once './app/controllers/API.controller.php';
 
 //
-class AutorController {
-
-    private $model;
-    private $view;
-
+class AutorAPIController extends ApiController{
+    protected $model;
+    
     function __construct() {
-        AuthHelper::initialize();
-
-        $this->view = new AutorView();
+        parent::__construct();
         $this->model = new AutorModel();
     }
     
