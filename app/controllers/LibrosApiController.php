@@ -1,7 +1,7 @@
 <?php
 require_once './app/models/textos.model.php';
 require_once './app/views/API.view.php';
-require_once './app/helpers/auth.helper.php';
+require_once './app/controllers/API.controller.php';
 
 
 // Clase para manejar el recurso textos
