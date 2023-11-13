@@ -14,7 +14,7 @@ $router->addRoute('textos/:ID', 'DELETE', 'textoAPIController', 'delete');
 $router->addRoute('textos', 'POST', 'textoAPIController', 'add');
 $router->addRoute('textos/:ID', 'PUT', 'textoAPIController', 'update');
 
-
+$router->addRoute('user/token', 'GET', 'UserAPIController', 'getToken');
 
 $router->addRoute('autor/', 'GET', 'autorAPIController', 'get');
 $router->addRoute('autor/:ID', 'GET', 'autorAPIController', 'get');
