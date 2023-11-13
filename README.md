@@ -44,6 +44,18 @@ Este endpoint actualiza un texto específico con el ID especificado. El método 
 Ejemplo de uso:
 PUT localhost/WEB2/TPE3/API-REST-Libreria-Virtual/api/textos/2 -H "Content-Type: application/json" -d '{ "text": "Este es un texto actualizado." }'
 
+- Endpoint GET user/token:
+('user/token', 'GET', 'UserAPIController', 'getToken');
+
+Este endpoint devuelve un token de acceso para el usuario actual. El método HTTP utilizado es GET. El controlador asociado es UserAPIController y el método asociado es getToken.
+
+Para utilizar este endpoint, se debe enviar una solicitud GET a la siguiente URL:
+/user/token
+La solicitud debe incluir una cabecera "Authorization" con el token de acceso actual del usuario. Si el usuario no está autenticado, la solicitud devolverá un error 401.
+Si la solicitud es exitosa, la respuesta devolverá un objeto JSON.
+El token de acceso se puede utilizar para acceder a otros endpoints protegidos de la API.
+
+
 Lo mismo sucede con los endpoints del recurso "autor", a saber:
 
 ('autor/', 'GET', 'autorAPIController', 'get');
