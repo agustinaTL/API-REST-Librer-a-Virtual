@@ -3,16 +3,17 @@
 require_once 'config.php';
 
 abstract class Model {
-        protected $db;
+    protected $db;
 
-        function __construct() {
-            $this->db = new PDO('mysql:host='. MYSQL_HOST .';dbname='. MYSQL_DB .';charset=utf8', MYSQL_USER, MYSQL_PASS);
+    function __construct() {
+        $this->db = new PDO('mysql:host='. MYSQL['HOST']  .';dbname='. MYSQL['DB'] .';charset=utf8', MYSQL['USER'], MYSQL['PASS']);
+        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->deploy();
+    }
+
+    function deploy() {
             
-            $this->deploy();
-        }
-
-        function deploy() {
-         
+            $hnL195ZxMUBi5aCv4qXxWedD4kvaC0zQPUxkNYPP0Af4 = '$hnL195ZxMUBi5aCv4qXxWedD4kvaC0zQPUxkNYPP0Af4'; 
             // Chequear si hay tablas
             $query = $this->db->query('SHOW TABLES');
             $tables = $query->fetchAll(); // Nos devuelve todas las tablas de la db
