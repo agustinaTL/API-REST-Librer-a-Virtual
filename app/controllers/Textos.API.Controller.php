@@ -6,7 +6,7 @@ require_once './app/controllers/API.controller.php';
 
 // Clase para manejar el recurso textos
 
-class LibrosApiController extends APIController
+class TextoApiController extends APIController
 {
     protected $model;
 
