@@ -6,8 +6,7 @@ require_once './app/controllers/API.controller.php';
 
 // Clase para manejar el recurso textos
 
-class LibrosApiController
-{
+class LibrosApiController extends APIController {
     private $model;
     private $view;
 
@@ -53,6 +52,10 @@ class LibrosApiController
     }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 260a19b41466907d1780204a7fd884d4431d4c23
 // Definimos una clase abstracta común para encapsular los métodos:
 
 abstract class ApiController
