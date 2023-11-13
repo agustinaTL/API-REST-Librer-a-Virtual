@@ -1,7 +1,7 @@
 <?php
 require_once './app/models/textos.model.php';
-require_once './app/views/libros.view.php';
-require_once './app/helpers/auth.helper.php';
+require_once './app/views/API.view.php';
+require_once './app/controllers/API.controller.php';
 
 
 // Clase para manejar el recurso textos
@@ -15,6 +15,12 @@ class LibrosApiController
     {
         $this->model = new TextosModel();
         $this->view = new APIView();
+    }
+
+    function getAll()
+    {
+        $libros = $this->model->getTextos();
+        $this->view->response($libros, 200);
     }
 
     function getTextos($params = ['orderBy', 'orderDirection'])
@@ -46,31 +52,6 @@ class LibrosApiController
         return $resultados;
     }
 }
-
-
-// Implementación API View
-
-class APIView
-{
-
-    public function response($data, $status)
-    {
-        header("Content-Type: application/json");
-        header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status));
-        echo json_encode($data);
-    }
-
-    private function _requestStatus($code)
-    {
-        $status = array(
-            200 => "OK",
-            404 => "Not found",
-            500 => "Internal Server Error"
-        );
-        return (isset($status[$code])) ? $status[$code] : $status[500];
-    }
-}
-
 
 // Definimos una clase abstracta común para encapsular los métodos:
 

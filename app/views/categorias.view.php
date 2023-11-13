@@ -1,12 +1,14 @@
 <?php
 
-class CategoriasView {
-    public function mostrarCategorias($categorias) {
+class CategoriasView
+{
+    public function mostrarCategorias($categorias)
+    {
         require './templates/categorias.phtml';
     }
 
-    public function mostrarTextoXCategortia($textos) {
+    public function mostrarTextoXCategortia($textos)
+    {
         require './templates/textosXCategoria.phtml';
     }
-
-} 
+}
