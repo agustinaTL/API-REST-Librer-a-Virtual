@@ -6,8 +6,7 @@ require_once './app/helpers/auth.helper.php';
 
 // Clase para manejar el recurso textos
 
-class LibrosApiController
-{
+class LibrosApiController extends APIController {
     private $model;
     private $view;
 
