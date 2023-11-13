@@ -8,6 +8,7 @@ require_once './app/controllers/Autor.API.Controller.php';
 $router = new Router();
 
 // define la tabla de ruteo
+//                 (endpoint, verbo, controller, método)
 $router->addRoute('textos', 'GET', 'textoAPIController', 'get');
 $router->addRoute('textos/:ID', 'GET', 'textoAPIController', 'get');
 $router->addRoute('textos/:ID', 'DELETE', 'textoAPIController', 'delete');
