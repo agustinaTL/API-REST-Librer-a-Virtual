@@ -4,6 +4,7 @@ require_once './libs/Router.php';
 require_once './app/controllers/Textos.API.Controller.php';
 
 require_once './app/controllers/Autor.API.Controller.php';
+require_once './app/controllers/User.API.Controller.php';
 
 $router = new Router();
 
