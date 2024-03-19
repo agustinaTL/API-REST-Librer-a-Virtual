@@ -1,3 +1,6 @@
+En esta carpeta se encuentran los archivos correspondientes al Trabajo Práctico Especial que es la creación de una Página Web de una Librería Virtual. 
+Materia Web 2 de la Carrera TUDAI -UNICEN, año 2023-.
+
 # API-REST-Libreria-Virtual
 
 DOCUMENTACIÓN DE LOS ENDPOINTS GENERADOS:
